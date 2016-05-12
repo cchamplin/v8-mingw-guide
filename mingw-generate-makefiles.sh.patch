@@ -1,0 +1,21 @@
+diff --git a/tools/mingw-generate-makefiles.sh b/tools/mingw-generate-makefiles.sh
+index 32af52d..6807bcf 100755
+--- a/tools/mingw-generate-makefiles.sh
++++ b/tools/mingw-generate-makefiles.sh
+@@ -76,7 +76,7 @@ find out -name '*.mk' -or -name 'Makefile*' -exec rm {} \;
+ # Generate fresh Makefiles.
+ mv build/gyp/gyp build/gyp/gyp.original
+ mv build/gyp/gyp.mingw build/gyp/gyp
+-make out/Makefile.ia32
++GYPFLAGS="-Dv8_use_external_startup_data=0" make i18nsupport=off x64.release
+ mv build/gyp/gyp build/gyp/gyp.mingw
+ mv build/gyp/gyp.original build/gyp/gyp
+ 
+@@ -92,6 +92,7 @@ for F in $FILES ; do
+           -e 's|'%s/n'|'%s\\\\n'|g' \
+           -e 's|-lwinmm\.lib|-lwinmm|g' \
+           -e 's|-lws2_32\.lib|-lws2_32|g' \
++		  -e 's|cmd_alink = rm -f \$@ && \$(AR\.\$(TOOLSET)) crs \$@ \$(filter %\.o,\$\^)|cmd_alink = rm -f \$@ \&\& echo \$(filter %\.o,\$\^) \| xargs \$(AR\.\$(TOOLSET)) crs \$@|g' \
+     > $F
+   rm $F.orig
+ done

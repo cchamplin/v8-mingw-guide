@@ -1,0 +1,10 @@
+--- a/third_party/python_26/Lib/multiprocessing/forking.py	Sun Oct 27 17:00:18 2013
++++ b/third_party/python_26/Lib/multiprocessing/forking.py	Wed May 11 17:54:46 2016
+@@ -484,6 +484,7 @@
+                 dirs = [os.path.dirname(os.path.dirname(main_path))]
+             else:
+                 dirs = [os.path.dirname(main_path)]
++            dirs.append('C:\\v8\\build\\gyp\\pylib')
+ 
+             assert main_name not in sys.modules, main_name
+             file, path_name, etc = imp.find_module(main_name, dirs)

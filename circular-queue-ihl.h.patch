@@ -1,0 +1,20 @@
+diff --git a/src/profiler/circular-queue-inl.h b/src/profiler/circular-queue-inl.h
+index 428945a..d61e4ba 100644
+--- a/src/profiler/circular-queue-inl.h
++++ b/src/profiler/circular-queue-inl.h
+@@ -7,6 +7,15 @@
+ 
+ #include "src/profiler/circular-queue.h"
+ 
++#if defined(_WIN32) && defined(V8_HOST_ARCH_64_BIT)
++// windows.h #defines this (only on x64). This causes problems because the
++// public API also uses MemoryBarrier at the public name for this fence. So, on
++// X64, undef it, and call its documented
++// (http://msdn.microsoft.com/en-us/library/windows/desktop/ms684208.aspx)
++// implementation directly.
++#undef MemoryBarrier
++#endif
++
+ namespace v8 {
+ namespace internal {
+ 

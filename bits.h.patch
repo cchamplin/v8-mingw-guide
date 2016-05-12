@@ -1,0 +1,19 @@
+diff --git a/src/base/bits.h b/src/base/bits.h
+index 0e76624..64c1fa8 100644
+--- a/src/base/bits.h
++++ b/src/base/bits.h
+@@ -14,6 +14,14 @@
+ #include "src/base/win32-headers.h"
+ #endif
+ 
++#ifdef __MINGW32__
++// winnt.h #defines these, we'll undef them to avoid conflicts during mingw builds. 
++#undef RotateLeft32
++#undef RotateRight32
++#undef RotateLeft64
++#undef RotateRight64
++#endif
++
+ namespace v8 {
+ namespace base {
+ namespace bits {

@@ -1,0 +1,20 @@
+diff --git a/src/base/platform/platform-win32.cc b/src/base/platform/platform-win32.cc
+index 6afa6f9..091171c 100644
+--- a/src/base/platform/platform-win32.cc
++++ b/src/base/platform/platform-win32.cc
+@@ -44,13 +44,14 @@ inline void MemoryBarrier() {
+ 
+ #endif  // __MINGW64_VERSION_MAJOR
+ 
+-
++#ifndef __MINGW64__
+ int localtime_s(tm* out_tm, const time_t* time) {
+   tm* posix_local_time_struct = localtime(time);  // NOLINT
+   if (posix_local_time_struct == NULL) return 1;
+   *out_tm = *posix_local_time_struct;
+   return 0;
+ }
++#endif // __MINGW64__
+ 
+ 
+ int fopen_s(FILE** pFile, const char* filename, const char* mode) {

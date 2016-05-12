@@ -45,5 +45,5 @@ In terminal with python path set to third_party/python_26
 > tools/mingw-generate-makefiles.sh
 
 ## Building
-make GYPFLAGS="-Dv8_use_external_startup_data=0" CFLAGS=" -std=c++11" CXXFLAGS=" -std=c++11"  CFLAGS_host=" -std=c++11" CXXFLAGS_host=" -std=c++11" LDFLAGS="-static -static-libgcc -static-libstdc++" make i18nsupport=off x64.release
+>GYPFLAGS="-Dv8_use_external_startup_data=0" CFLAGS=" -std=c++11" CXXFLAGS=" -std=c++11"  CFLAGS_host=" -std=c++11" CXXFLAGS_host=" -std=c++11" LDFLAGS="-static -static-libgcc -static-libstdc++" make i18nsupport=off x64.release
 
